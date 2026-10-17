@@ -162,6 +162,9 @@ async function init() {
   plaza.receiveShadow = true;
   scene.add(plaza);
   const podTop = new THREE.Mesh(new THREE.PlaneGeometry(92, 70), mats.podium);
+  mats.podium.polygonOffset = true;
+  mats.podium.polygonOffsetFactor = -1;
+  mats.podium.polygonOffsetUnits = -4;
   podTop.rotation.x = -Math.PI / 2;
   podTop.position.set(0, SITE.podiumY + 0.002, SITE.podiumFront - 35);
   podTop.receiveShadow = true;

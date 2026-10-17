@@ -209,7 +209,7 @@ export function buildBlock(batch, rng, cfg) {
   for (let k = 1; k <= roofK; k++) {
     const yb = T(k) - B.slabT, yt = T(k);
     if (collapse && k === roofK) {
-      batch.mm('concrete', sx0, yb, B.zB - 0.3, xc + 0.25, yt, 0.25);
+      batch.mm('concrete', sx0 + 0.03, yb, B.zB - 0.3, xc + 0.25, yt, 0.15);
       batch.mm('concrete', xc + 0.25, yb, B.zB - 0.3, sx1, yt, -7.4);
       // 后段悬挂残片
       batch.pivotBox('concrete', sx1 - xc - 0.9, B.slabT, 2.2, [xc + 0.25 + (sx1 - xc - 0.25) / 2, yt - B.slabT / 2, -7.4], [0, 0, 1.05], 0.5, 0.03, 0.04);
@@ -225,7 +225,7 @@ export function buildBlock(batch, rng, cfg) {
       }
       out.rubble.push({ x: xc + 2.2, y: T(floors), z: -3, r: 2.2, n: 70 });
     } else {
-      batch.mm('concrete', sx0, yb, B.zB - 0.3, sx1, yt, 0.25);
+      batch.mm('concrete', sx0 + 0.03, yb, B.zB - 0.3, sx1 - 0.03, yt, 0.15);
     }
   }
   // 架空层顶梁（从下方可见）
@@ -267,12 +267,12 @@ export function buildBlock(batch, rng, cfg) {
     }
     // 走廊两端回头栏板
     if (rightEnd && !(collapse && k >= floors)) {
-      batch.mm('paint', x1 + 0.07, by0, B.zW, x1 + 0.25, by1, 0.25);
-      batch.mm('concrete', x1 + 0.02, by1, B.zW, x1 + 0.3, by1 + 0.07, 0.3);
+      batch.mm('paint', x1 + 0.07, by0, B.zW, x1 + 0.25, by1, 0.07);
+      batch.mm('concrete', x1 + 0.02, by1, B.zW, x1 + 0.3, by1 + 0.07, 0.0);
     }
     if (leftEnd) {
-      batch.mm('paint', x0 - 0.25, by0, B.zW, x0 - 0.07, by1, 0.25);
-      batch.mm('concrete', x0 - 0.3, by1, B.zW, x0 - 0.02, by1 + 0.07, 0.3);
+      batch.mm('paint', x0 - 0.25, by0, B.zW, x0 - 0.07, by1, 0.07);
+      batch.mm('concrete', x0 - 0.3, by1, B.zW, x0 - 0.02, by1 + 0.07, 0.0);
     }
   }
 
@@ -339,8 +339,8 @@ export function buildBlock(batch, rng, cfg) {
     if (leftEnd) batch.mm('wall', x0 - 0.12, yF, B.zB, x0 + 0.12, yC, B.zW);
   }
   // 背立面
-  batch.mm('interior', sx0, y0, B.zB - 0.3, sx1, collapse ? T(floors) + 2.4 : roofTop, B.zB);
-  if (collapse) batch.mm('interior', sx0, T(floors) + 2.4, B.zB - 0.3, xc, roofTop, B.zB);
+  batch.mm('interior', sx0 + 0.03, y0, B.zB - 0.22, sx1 - 0.03, collapse ? T(floors) + 2.4 : roofTop - B.slabT, B.zB);
+  if (collapse) batch.mm('interior', sx0 + 0.03, T(floors) + 2.4, B.zB - 0.22, xc, roofTop - B.slabT, B.zB);
 
   // ---------- 架空层围合墙（壁画 / 门洞 / 展厅）
   const yG1 = T(1) - B.slabT;

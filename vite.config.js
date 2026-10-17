@@ -28,6 +28,7 @@ function shotPlugin() {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [shotPlugin()],
   server: { watch: { ignored: ['**/shots/**'] } },
   build: { chunkSizeWarningLimit: 1000 },

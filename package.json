@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:all": "vite build && npm --prefix stylized run build -- --outDir ../dist/stylized --emptyOutDir",
     "preview": "vite preview"
   },
   "dependencies": {

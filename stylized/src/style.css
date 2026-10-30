@@ -1,0 +1,209 @@
+:root {
+  --round: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans SC', 'Nunito', sans-serif;
+  --ink: #ffffff;
+  --navy: #2b3a67;
+  --accent: #f2793c;
+  --shadow: 0 2px 0 rgba(43, 58, 103, 0.35), 0 3px 14px rgba(43, 58, 103, 0.35);
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #8fc3ef;
+  color: var(--ink);
+  font-family: var(--round);
+}
+#app canvas {
+  display: block;
+  outline: none;
+}
+
+/* ---------- loader：晴空渐变 + 圆润的进度条 ---------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--navy);
+  background:
+    radial-gradient(ellipse 38% 16% at 22% 30%, rgba(255, 255, 255, 0.9) 0 60%, rgba(255, 255, 255, 0) 61%),
+    radial-gradient(ellipse 30% 12% at 30% 27%, rgba(255, 255, 255, 0.9) 0 60%, rgba(255, 255, 255, 0) 61%),
+    radial-gradient(ellipse 34% 14% at 78% 74%, rgba(255, 255, 255, 0.85) 0 60%, rgba(255, 255, 255, 0) 61%),
+    radial-gradient(ellipse 24% 11% at 70% 71%, rgba(255, 255, 255, 0.85) 0 60%, rgba(255, 255, 255, 0) 61%),
+    linear-gradient(180deg, #3f86e0 0%, #6fb1f2 55%, #d3ebf8 100%);
+  z-index: 10;
+  transition: opacity 1.2s ease 0.2s, visibility 0s linear 1.4s;
+}
+#loader.done {
+  opacity: 0;
+  visibility: hidden;
+}
+.l-title {
+  font-size: 38px;
+  letter-spacing: 0.4em;
+  padding-left: 0.4em;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: var(--shadow);
+}
+.l-en {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: 0 1px 6px rgba(43, 58, 103, 0.4);
+}
+.l-tag {
+  margin: 8px 0 14px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  box-shadow: 0 3px 0 #c45a26;
+}
+.l-bar {
+  width: 240px;
+  height: 12px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 3px 0 rgba(43, 58, 103, 0.25);
+}
+.l-bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8bc34a, #5fa83a);
+  transition: width 0.4s ease;
+}
+.l-sub {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(43, 58, 103, 0.45);
+  margin-top: 6px;
+}
+
+/* ---------- HUD ---------- */
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+#hud.show {
+  opacity: 1;
+}
+#hud .title {
+  position: absolute;
+  left: 40px;
+  top: 34px;
+  text-shadow: var(--shadow);
+}
+#hud .cn {
+  font-size: 32px;
+  letter-spacing: 0.36em;
+  font-weight: 800;
+}
+#hud .en {
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  font-weight: 700;
+  opacity: 0.95;
+  margin-top: 6px;
+}
+#hud .rule {
+  width: 52px;
+  height: 4px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 0 rgba(43, 58, 103, 0.3);
+  margin: 14px 0 12px;
+}
+#hud .meta {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+#hud .meta b {
+  font-size: 20px;
+  color: #ffd23f;
+  font-weight: 800;
+}
+#hud .tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-shadow: none;
+  box-shadow: 0 2px 0 #c45a26;
+  vertical-align: 2px;
+}
+#hud .coord {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  opacity: 0.92;
+  margin-top: 8px;
+}
+#hud .note {
+  position: absolute;
+  right: 40px;
+  bottom: 64px;
+  max-width: 320px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  text-align: right;
+  box-shadow: 0 4px 0 rgba(43, 58, 103, 0.18), 0 6px 22px rgba(43, 58, 103, 0.18);
+}
+#hud .note p {
+  margin: 0;
+}
+#hud .hint {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(43, 58, 103, 0.6);
+}
+kbd {
+  font-family: inherit;
+  display: inline-block;
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: none;
+  box-shadow: 0 2px 0 rgba(43, 58, 103, 0.35);
+}

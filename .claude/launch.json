@@ -41,6 +41,21 @@
         "--strictPort"
       ],
       "port": 5180
+    },
+    {
+      "name": "gafa-illustrated",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "illustrated",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5182",
+        "--strictPort"
+      ],
+      "port": 5182
     }
   ]
 }

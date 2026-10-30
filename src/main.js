@@ -253,6 +253,7 @@ async function init() {
   });
   window.addEventListener('keydown', (e) => {
     if (e.key === '2') window.location.href = 'stylized/'; // 切换到风格化版本
+    if (e.key === '3') window.location.href = 'illustrated/'; // 切换到插画版本
     if (e.key === 'h' || e.key === 'H') document.getElementById('hud').classList.toggle('show');
     if (e.key === 'c' || e.key === 'C') {
       auto = !auto;
